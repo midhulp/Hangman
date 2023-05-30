@@ -53,8 +53,8 @@ def test_show_no_word():
      assert hangman.maskword("python","")=="------"
 
 
-# def test_masked_word():
-#     assert hangman.maskword("elephant",["e","n"])=="e-e---n-"
+def test_masked_word():
+    assert hangman.maskword("elephant",["e","n"])=="e-e---n-"
 
 
 # def test_wrong_word():
