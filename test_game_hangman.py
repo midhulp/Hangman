@@ -98,23 +98,16 @@ def test_check_wrong():
     turns_remaining = 6
     new_guess = "x"
     assert hangman.check("hospital", ["i", "t", "p", "x"], 5,"x")
-   
+
+
 def test_game_won():
-    secret_word = "rabbit"
-    guesses = ["r", "a", "b", "i", "t"]
-    turns_remaining = 5
-    finished, message = hangman.game_over(secret_word, guesses, turns_remaining)
-    assert finished
-    assert message == "You Won! The word is rabbit"
+    assert hangman.game_over("rabbit", ['r', 'a', 'b', 'i', 't'], 5)==(True,'You Won! The word is rabbit')
+    # assert message == 
 
 
 def test_game_lost():
-    secret_word = "rabbit"
-    guesses = ["r", "a", "b", "i", "t"]
-    turns_remaining = 0
-    finished, message = hangman.game_over(secret_word, guesses, turns_remaining)
-    assert finished
-    assert message == "You lost! The word was rabbit"
+    assert hangman.game_over("rabbit", ["r", "a", "b", "i", "k"], 0)==(True,'You lost! The word was rabbit')
+    # assert message == 
 
     
 
