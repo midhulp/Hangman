@@ -64,14 +64,12 @@ def test_wrong_word():
 
     
 
-# def test_update_status_input():
-#     secret_word = "helicopter"
-#     guesses = ["c", "o", "x"]
-#     turns_remaining = 3
-#     assert hangman.update_stats("----co----", "c o x", 3)
-# #     assert ret == """Secret word:----co----
-# # Guesses : c o x
-# # Remaining turns : 3"""
+def test_update_status_input():
+    secret_word = "helicopter"
+    guesses = ["c", "o", "x"]
+    turns_remaining = 3
+    assert hangman.update_stats("----co----", "c o x", 3)
+
 
 # def test_update_status_no_guesses():
 #     secret_word = "helicopter"
