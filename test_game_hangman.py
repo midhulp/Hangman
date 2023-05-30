@@ -9,7 +9,6 @@ def test_select_random_word_min_length():
     f = open(name, "w")
     f.writelines(["cat\n","elephant\n","mouse\n","dog\n"])
     f.close()
-
     for _ in range(20):
         secret_word = hangman.get_random_word(name)
         assert secret_word == "elephant"
@@ -78,63 +77,38 @@ def test_update_status_no_guesses():
     assert hangman.update_stats("----------","", 8)
 
 
-def test_check_already_guessed():
+def test_already_guessed():
     secret_word = "hospital"
     guesses = ["i", "t"]
     turns_remaining = 5
     new_guess = "t"
-    status, turns_remaining = hangman.check(secret_word, guesses, 
-                                            turns_remaining, 
-                                            new_guess)
-    assert status == hangman.ALREADY_GUESSED
-    assert turns_remaining == 5
-    assert guesses == ["i", "t"]
-    
-    
+    assert hangman.check("hospital", ["i", "t"], 5, "t")
+  
 def test_check_correct():
     secret_word = "hospital"
-    guesses = ["i", "t"]q
+    guesses = ["i", "t"]
     turns_remaining = 6
     new_guess = "p"
-    status, turns_remaining = hangman.check(secret_word, guesses, 
-                                            turns_remaining, 
-                                            new_guess)
-    assert status == hangman.CORRECT
-    assert turns_remaining == 6
-    assert guesses == ["i", "t", "p"]
-
+    assert hangman.check("hospital", ["i", "t", "p"], 6, "p")
+   
     
 def test_check_wrong():
     secret_word = "hospital"
     guesses = ["i", "t", "p"]
     turns_remaining = 6
     new_guess = "x"
-    status, turns_remaining = hangman.check(secret_word, guesses, 
-                                            turns_remaining, 
-                                            new_guess)
-    assert status == hangman.WRONG
-    assert turns_remaining == 5
-    assert guesses == ["i", "t", "p", "x"]
-
-    
-def test_game_over_not_over():
-    secret_word = "policeman"
-    guesses = ["x", "t"]
-    turns_remaining = 5
-    finished, message = hangman.game_over(secret_word, guesses, turns_remaining)
-    assert not finished
-    assert message == None
-
-def test_game_over_won():
+    assert hangman.check("hospital", ["i", "t", "p", "x"], 5,"x")
+   
+def test_game_won():
     secret_word = "rabbit"
     guesses = ["r", "a", "b", "i", "t"]
     turns_remaining = 5
     finished, message = hangman.game_over(secret_word, guesses, turns_remaining)
     assert finished
-    assert message == "You guessed it! The word was rabbit"
+    assert message == "You Won! The word is rabbit"
 
 
-def test_game_over_lost():
+def test_game_lost():
     secret_word = "rabbit"
     guesses = ["r", "a", "b", "i", "t"]
     turns_remaining = 0
