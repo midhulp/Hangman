@@ -71,26 +71,24 @@ def test_update_status_input():
     assert hangman.update_stats("----co----", "c o x", 3)
 
 
-# def test_update_status_no_guesses():
-#     secret_word = "helicopter"
-#     guesses = []
-#     turns_remaining = 8
-#     assert hangman.update_stats("----------","", 8)
-# #     assert ret == """Secret word:
-# # Guesses : 
-# # Remaining turns : 8"""
+def test_update_status_no_guesses():
+    secret_word = "helicopter"
+    guesses = []
+    turns_remaining = 8
+    assert hangman.update_stats("----------","", 8)
 
-# def test_check_already_guessed():
-#     secret_word = "hospital"
-#     guesses = ["i", "t"]
-#     turns_remaining = 5
-#     new_guess = "t"
-#     status, turns_remaining = hangman.check(secret_word, guesses, 
-#                                             turns_remaining, 
-#                                             new_guess)
-#     assert status == hangman.ALREADY_GUESSED
-#     assert turns_remaining == 5
-#     assert guesses == ["i", "t"]
+
+def test_check_already_guessed():
+    secret_word = "hospital"
+    guesses = ["i", "t"]
+    turns_remaining = 5
+    new_guess = "t"
+    status, turns_remaining = hangman.check(secret_word, guesses, 
+                                            turns_remaining, 
+                                            new_guess)
+    assert status == hangman.ALREADY_GUESSED
+    assert turns_remaining == 5
+    assert guesses == ["i", "t"]
     
     
 # def test_check_correct():
